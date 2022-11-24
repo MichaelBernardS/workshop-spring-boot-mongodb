@@ -20,7 +20,7 @@ public class UserResource {
 	
 	@GetMapping
 	public ResponseEntity<List<User>> findAll() { // ResponseEntity objeto sofisticado, que encapsula toda a estrutura necessária para retornar resposta http já com possíveis cabeçalhos, erros, e assim por diante
-			List <User> list = service.findAll(); // BUsca no BD os usuários e guarda nessa lista;
+			List<User> list = service.findAll(); // BUsca no BD os usuários e guarda nessa lista;
 			return ResponseEntity.ok().body(list); // Ok é um método que instancia o ResponseEntity já com o código de resposta http que a resposta ocorreu com sucesso. O body define qual o corpo desta resposta, ou seja, a lista.
 	}
 }
