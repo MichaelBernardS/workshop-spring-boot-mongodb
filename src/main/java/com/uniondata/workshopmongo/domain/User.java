@@ -3,10 +3,15 @@ package com.uniondata.workshopmongo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="user") // Para dizer para o Spring que esta classe corresponde ao mongoDB; Opcional o collection, para indicar que pode por o nome q quiser na tabela, mas por padrão, ele faz o msm nome tudo minúsculo;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String id;
 	private String name;
 	private String email;
