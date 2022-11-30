@@ -35,6 +35,17 @@ public class UserService {
 		repo.deleteById(id);
 	}
 	
+	public User update(User obj) { // Este obj que vai vir como argumento, vai ser os dados que o usuário vai mandar na requisição;
+		User newObj = findById(obj.getId()); // O dado que o usuário passa não está no BD, portanto, iremos buscar esse dado original lá no BD;
+		updateData(newObj, obj); // Método responsável por copiar os novos dados do obj, para o newObj, ou seja, pegar os dados que foram passados como arg (obj), e atualizar o newObj (novo usuário q estamos atualizando);
+		return repo.save(newObj);
+	}
+	
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+	}
+
 	public User fromDTO(UserDTO objDTO) { // Método que pega um DTO e instancia um usuário, caminho inverso que foi feito no DTO; Foi colocada essa classe no UserService pois dependendo da situação, para instanciar um User, podemos querer acessar o banco de dados, e quem tem a dependência é o UserService. Com isto, ajuda na manutenção futura, caso tenha acesso a dados; Viola o princípio da responsabilidade única (SRP); 
 		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
 	}

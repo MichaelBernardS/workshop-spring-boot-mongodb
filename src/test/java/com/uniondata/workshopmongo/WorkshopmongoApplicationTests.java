@@ -9,5 +9,4 @@ class WorkshopmongoApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
