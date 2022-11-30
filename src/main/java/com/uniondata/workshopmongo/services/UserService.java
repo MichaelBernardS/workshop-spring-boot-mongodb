@@ -30,6 +30,11 @@ public class UserService {
 		return repo.insert(obj);
 	}
 	
+	public void delete(String id) {
+		findById(id);
+		repo.deleteById(id);
+	}
+	
 	public User fromDTO(UserDTO objDTO) { // Método que pega um DTO e instancia um usuário, caminho inverso que foi feito no DTO; Foi colocada essa classe no UserService pois dependendo da situação, para instanciar um User, podemos querer acessar o banco de dados, e quem tem a dependência é o UserService. Com isto, ajuda na manutenção futura, caso tenha acesso a dados; Viola o princípio da responsabilidade única (SRP); 
 		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
 	}
