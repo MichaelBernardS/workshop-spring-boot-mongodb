@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uniondata.workshopmongo.domain.User;
+import com.uniondata.workshopmongo.dto.UserDTO;
 import com.uniondata.workshopmongo.repository.UserRepository;
 import com.uniondata.workshopmongo.services.exception.ObjectNotFoundException;
 
@@ -23,6 +24,14 @@ public class UserService {
 	public User findById(String id) {
 		Optional<User> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+	}
+	
+	public User insert(User obj) {
+		return repo.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDTO) { // Método que pega um DTO e instancia um usuário, caminho inverso que foi feito no DTO; Foi colocada essa classe no UserService pois dependendo da situação, para instanciar um User, podemos querer acessar o banco de dados, e quem tem a dependência é o UserService. Com isto, ajuda na manutenção futura, caso tenha acesso a dados; Viola o princípio da responsabilidade única (SRP); 
+		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
 	}
 }
 
