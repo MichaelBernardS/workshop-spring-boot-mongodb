@@ -43,5 +43,10 @@ public class Instantiation implements CommandLineRunner {
 		Post post2 = new Post(null, sdf.parse("23/08/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
+		
+		maria.getPosts().addAll(Arrays.asList(post1, post2)); // A maria, na lista de posts dela, adicionamos o post1 e o post2 nela; Associação 
+		userRepository.save(maria); // Após isto, necessário salvar a Maria;
 	}
 }
+
+// Carga inicial do banco de dados, onde incluiremos as instanciações a serem jogadas no BD;
