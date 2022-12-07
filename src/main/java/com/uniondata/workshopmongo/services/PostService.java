@@ -22,7 +22,7 @@ public class PostService {
 	}
 	
 	public List<Post> findByTitle(String text) {
-		return repo.findByTitleContainingIgnoreCase(text); // Query Methods - Query especial que o SpringData oferece, que gera automaticamente as consultas; Neste caso, busca posts contendo um dado String no título, ignorando minúsculas e maiúsculas;
+		return repo.searchTitle(text); // Query Methods - Query especial que o SpringData oferece, que gera automaticamente as consultas; Neste caso, busca posts contendo um dado String no título, ignorando minúsculas e maiúsculas;
 	}
 }
 
