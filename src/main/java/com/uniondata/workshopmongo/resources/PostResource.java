@@ -1,5 +1,6 @@
 package com.uniondata.workshopmongo.resources;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,17 @@ public class PostResource {
 		text = URL.decodeParam(text); // Decodifica o texto para nós;
 		List<Post> list = service.findByTitle(text); // Recebendo esse texto como título para procurar;
 		return ResponseEntity.ok().body(list);  // Retornar o corpo da resposta, cujo será esta lista;
+	}
+	
+	@GetMapping(value="/fullsearch")
+	public ResponseEntity<List<Post>> fullSearch(
+			@RequestParam(value="text", defaultValue="") String text,
+			@RequestParam(value="minDate", defaultValue="") String minDate,
+			@RequestParam(value="maxDate", defaultValue="") String maxDate) {
+		text = URL.decodeParam(text);
+		Date min = URL.convertDate(minDate, new Date(0L)); // Caso dê problema, gera a data mínima do sistema (0L) que é 01/01/1970;
+		Date max = URL.convertDate(maxDate, new Date()); // Caso dê problema, gera para a data atual do sistema;
+		List<Post> list = service.fullSearch(text, min, max);
+		return ResponseEntity.ok().body(list);
 	}
 }
