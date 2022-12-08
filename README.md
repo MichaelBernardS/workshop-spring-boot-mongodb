@@ -35,7 +35,7 @@ Este projeto é uma aplicação backend utilizando o banco MongoDB e suas depend
 
 ```bash
 # clonar repositório
-git clone https://github.com/https://github.com/MichaelBernardS/workshop-spring3-jpa.git
+git clone https://github.com/MichaelBernardS/workshop-spring-boot-mongodb.git
 ```
 
 # Autor
